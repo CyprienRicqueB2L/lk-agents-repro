@@ -1,0 +1,59 @@
+services:
+  dispatch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: host
+    volumes:
+      - .:/app
+      - ./test_results:/app/test_results
+    environment:
+      - PYTHONPATH=/app
+    env_file:
+      - .env
+    command: python -m dispatch
+
+
+  a1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: host
+    volumes:
+      - .:/app
+      - ./test_results:/app/test_results
+    environment:
+      - PYTHONPATH=/app
+    env_file:
+      - .env
+    command: python -m a1 dev
+
+
+  a2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: host
+    command: python -m a2 dev
+    volumes:
+      - .:/app
+      - ./test_results:/app/test_results
+    environment:
+      - PYTHONPATH=/app
+    env_file:
+      - .env
+
+
+  aio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: host
+    command: bash run.sh
+    volumes:
+      - .:/app
+      - ./test_results:/app/test_results
+    environment:
+      - PYTHONPATH=/app
+    env_file:
+      - .env

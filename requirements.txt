@@ -1,0 +1,7 @@
+boto3
+dotenv
+livekit-agents[openai, cartesia, elevenlabs, deepgram, silero, turn-detector, gladia, google]>=1.0
+python-dotenv>=1.0
+livekit-plugins-noise-cancellation==0.2.4
+watchtower==3.4.0
+
